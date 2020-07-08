@@ -1,11 +1,3 @@
-
-<?php
-//On inclut le fichier dont on a besoin (ici à la racine de notre site)
-require 'Database.php';
-
-require 'Articles.php';
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -229,18 +221,16 @@ require 'Articles.php';
         </div>
 
         <div class="row mb-2">
-            <?php $article = new Articles();?>
-            <?php $articles = $article->getArticles();?>
-            <?php while($article = $articles->fetch()) {?>
+            <?php foreach($articles as $article): ?>
             <div class="col-md-6">
                 <div
                     class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary"><?= htmlspecialchars($article['title']) ?></strong>
+                        <strong class="d-inline-block mb-2 text-primary"><?= htmlspecialchars($article->getTitle()) ?></strong>
                         <h3 class="mb-0">Featured post</h3>
-                        <div class="mb-1 text-muted"><?= htmlspecialchars($article['created']) ?></div>
-                        <p class="card-text mb-auto"><?= htmlspecialchars($article['content']) ?></p>
-                        <a href="single.php?articleId=<?= htmlspecialchars($article['id']);?>" class="stretched-link">Continue reading</a>
+                        <div class="mb-1 text-muted"><?= htmlspecialchars($article->getCreated()) ?></div>
+                        <p class="card-text mb-auto"><?= htmlspecialchars($article->getContent()) ?></p>
+                        <a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId());?>" class="stretched-link">Continue reading</a>
                     </div>
                     <div class="col-auto d-none d-lg-block">
                         <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
@@ -254,7 +244,7 @@ require 'Articles.php';
                 </div>
             </div>
         </div>
-            <?php } $articles->closeCursor(); ?>
+        <?php endforeach ?>
     </div>
 
     <main role="main" class="container">

@@ -1,14 +1,12 @@
 <?php
 
+Namespace App\Manager;
+
+use PDO;
+use Exception;
+
 abstract class Database
 {
-
-    /**
-     * Les Constantes
-     */
-    const DB_HOST = 'mysql:host=db;port=3306;dbname=myDb;charset=utf8';
-    const DB_USER = 'user';
-    const DB_PW = 'test';
 
     /**
      * Les variables
@@ -34,11 +32,11 @@ abstract class Database
     {
         //Essai de connection à la bdd
         try {
-            $connection = new PDO(Database::DB_HOST, Database::DB_USER, Database::DB_PW);
-            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->connection = new PDO(DB_HOST, DB_USER, DB_PW);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             //Renvoi un message avec return
-            return $connection;
+            return $this->connection;
         }
 
         //Renvoi une erreur si la connexion échoue
@@ -56,14 +54,12 @@ abstract class Database
     {
         if ($params) {
             $result = $this->testConnection()->prepare($request);
-            $result->setFetchMode(PDO::FETCH_CLASS, Articles::class);
             $result->execute($params);
 
             return $result;
         }
 
         $result = $this->testConnection()->query($request);
-        $result->setFetchMode(PDO::FETCH_CLASS, Articles::class);
         return $result;
     }
 }

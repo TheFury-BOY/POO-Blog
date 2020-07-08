@@ -1,12 +1,3 @@
-<?php
-
-//On inclus les fichiers dont on a besoin
-require 'Database.php';
-
-require 'Articles.php';
-
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -21,9 +12,12 @@ require 'Articles.php';
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- Bootstrap core Script -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -187,7 +181,7 @@ require 'Articles.php';
                     <a class="text-muted" href="#">Subscribe</a>
                 </div>
                 <div class="col-4 text-center">
-                    <a class="blog-header-logo text-dark" href="home.php">Large</a>
+                    <a class="blog-header-logo text-dark" href="index.php">Large</a>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <a class="text-muted" href="#" aria-label="Search">
@@ -230,17 +224,15 @@ require 'Articles.php';
         </div>
 
         <div class="row mb-2">
-            <?php $article = new Articles();?>
-            <?php $articles = $article->getArticle(1);?>
-            <?php $article = $articles->fetch() ?>
             <div class="col-md-12">
                 <div
                     class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-500 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary"><?= htmlspecialchars($article['title']) ?></strong>
+                        <strong
+                            class="d-inline-block mb-2 text-primary"><?= htmlspecialchars($article->getTitle()) ?></strong>
                         <h3 class="mb-0">Featured post</h3>
-                        <div class="mb-1 text-muted"><?= htmlspecialchars($article['created']) ?></div>
-                        <p class="card-text mb-auto"><?= htmlspecialchars($article['content']) ?></p>
+                        <div class="mb-1 text-muted"><?= htmlspecialchars($article->getCreated()) ?></div>
+                        <p class="card-text mb-auto"><?= htmlspecialchars($article->getContent()) ?></p>
                     </div>
                     <div class="col-auto d-none d-lg-block">
                         <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
@@ -254,7 +246,7 @@ require 'Articles.php';
                 </div>
             </div>
         </div>
-            <?php $articles->closeCursor(); ?>
+        <?php $articles->closeCursor(); ?>
     </div>
 
     <main role="main" class="container">
