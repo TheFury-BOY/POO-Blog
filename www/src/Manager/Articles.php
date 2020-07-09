@@ -41,4 +41,13 @@ class Articles extends Database
         return $this->buildObject($article);
 
     }
+
+    public function newArticle(Array $article)
+    {
+        //Permet de récupérer les variables $title et $content
+        extract($article);
+        $request = 'INSERT INTO article (title, content, created) VALUES (?, ?, ?, NOW())';
+        $this->createQuery($request, [$title, $content]);
+        
+    }
 }

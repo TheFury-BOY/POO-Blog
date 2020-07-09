@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Core\View;
 use App\Manager\Articles;
 
 class FrontController
@@ -12,19 +13,24 @@ class FrontController
     public function __construct()
     {
         $this->article = new Articles();
+        $this->view = new View();
     }
 
     public function home()
     {
         $articles = $this->article->getArticles();
 
-        require '../templates/home.php';
+        return $this->view->render('home', [
+            'articles' => $articles,
+        ]);
     }
 
     public function article(Int $artId)
     {
         $article = $this->article->getArticle($artId);
 
-        require '../templates/single.php';
+        return $this->view->render('single', [
+            'article' => $article,
+        ]);
     }
 }
