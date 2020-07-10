@@ -40,13 +40,14 @@ class Router
 
     public function run()
     {
+        //var_dump($this->request->getPost());
 
         $route = $this->request->getGet()->getParam('route');
         try{
-            if(isset($_GET['route'])) {
-                if($_GET['route'] === 'article'){
+            if(isset($route)) {
+                if($route === 'article'){
                     $this->frontController->article($this->request->getGet()->getParam('articleId'));
-                } elseif ($_GET['route']==='newArticle') {
+                } elseif ($route === 'newArticle') {
                     $this->backController->newArticle($this->request->getPost());
                 } else {
                     $this->errController->errNotFound();

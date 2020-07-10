@@ -22,6 +22,11 @@ class Article
     /**
      * @var \Date
      */
+    private $status;
+
+    /**
+     * @var \Date
+     */
     private $created;
 
     /**
@@ -75,6 +80,22 @@ class Article
     public function setContent($content)
     {
         $this->content = $content;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 
     /**

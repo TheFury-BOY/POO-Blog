@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 use App\Core\Parameter;
 
-
-
 class BackController extends Controller
 {
 

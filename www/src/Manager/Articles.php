@@ -3,6 +3,7 @@
 Namespace App\Manager;
 
 use App\Models\Article;
+use App\Core\Parameter;
 
 class Articles extends Database
 {
@@ -12,6 +13,7 @@ class Articles extends Database
         $article->setId($row['id']);
         $article->setTitle($row['title']);
         $article->setContent($row['content']);
+        $article->setStatus($row['status']);
         $article->setCreated($row['created']);
         $article->setUpdated($row['updated']);
         return $article;
@@ -42,10 +44,9 @@ class Articles extends Database
 
     }
 
-    public function newArticle(Array $article)
+    public function newArticle(Parameter $post)
     {
         //Permet de récupérer les variables $title et $content
-        extract($article);
         $request = 'INSERT INTO Articles (title, content, status, created) VALUES (?, ?, ?, NOW())';
         $this->createQuery($request, [$post->getParam('title'), $post->getParam('content'), $post->getParam('status')]);
     }
