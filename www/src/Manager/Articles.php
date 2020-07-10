@@ -47,6 +47,6 @@ class Articles extends Database
         //Permet de récupérer les variables $title et $content
         extract($article);
         $request = 'INSERT INTO Articles (title, content, status, created) VALUES (?, ?, ?, NOW())';
-        $this->createQuery($request, [$title, $content, $status]);
+        $this->createQuery($request, [$post->getParam('title'), $post->getParam('content'), $post->getParam('status')]);
     }
 }

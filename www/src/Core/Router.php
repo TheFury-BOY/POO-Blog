@@ -24,22 +24,30 @@ class Router
      */
     private $errController;
 
+    /**
+     * @param $request
+     */
+    private $request;
+
     public function __construct()
     {
         $this->frontController = new FrontController();
         $this->backController = new BackController();
         $this->ErrController = new ErrController();
+        $this->request = new Request();
     }
 
 
     public function run()
     {
+
+        $route = $this->request->getGet()->getParam('route');
         try{
             if(isset($_GET['route'])) {
                 if($_GET['route'] === 'article'){
-                    $this->frontController->article($_GET['articleId']);
+                    $this->frontController->article($this->request->getGet()->getParam('articleId'));
                 } elseif ($_GET['route']==='newArticle') {
-                    $this->backController->newArticle($_POST);
+                    $this->backController->newArticle($this->request->getPost());
                 } else {
                     $this->errController->errNotFound();
                 }

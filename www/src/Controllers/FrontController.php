@@ -2,19 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Core\View;
-use App\Manager\Articles;
 
-class FrontController
+
+class FrontController extends Controller
 {
-
-    private $article;
-
-    public function __construct()
-    {
-        $this->article = new Articles();
-        $this->view = new View();
-    }
 
     public function home()
     {

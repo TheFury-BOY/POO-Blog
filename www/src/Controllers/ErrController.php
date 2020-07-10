@@ -2,12 +2,8 @@
 
 namespace App\Controllers;
 
-class ErrController
+class ErrController extends Controller
 {
-    public function __construct()
-    {
-
-    }
 
     public function errNotFound()
     {
