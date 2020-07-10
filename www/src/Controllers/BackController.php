@@ -27,7 +27,7 @@ class BackController
         if (isset($post['submit'])) {
             $article = new Articles();
             $article->newArticle($post);
-            header('Location : ../public/index.php');
+            header('Location: ../public/index.php');
         }
 
         return $this->view->render('new_article', [

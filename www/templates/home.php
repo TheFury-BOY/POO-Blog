@@ -11,7 +11,7 @@
                 <div class="mb-1 text-muted"><?= htmlspecialchars($article->getCreated()) ?></div>
                 <p class="card-text mb-auto"><?= substr(htmlspecialchars($article->getContent()), 0, 100) ?></p>
                 <a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId());?>"
-                    class="stretched-link">Continue reading</a>
+                    class="stretched-link">Continuer à lire...</a>
             </div>
             <div class="col-auto d-none d-lg-block">
                 <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
